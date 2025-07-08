@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registrar Usuario</title>
+  <title>Iniciar Sesión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap -->
@@ -14,21 +14,21 @@
   <!-- Estilos personalizados -->
   <style>
     body {
-      background: linear-gradient(135deg, #ACB6E5, #74ebd5);
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    .register-card {
+    .login-card {
       animation: slideIn 0.7s ease-out;
       border-radius: 1rem;
       box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.2);
       padding: 2rem;
       background-color: #ffffff;
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
     }
     .form-title {
       font-weight: bold;
@@ -42,13 +42,13 @@
     }
     .form-control:focus {
       box-shadow: none;
-      border-color: #198754;
+      border-color: #007bff;
     }
-    .btn-success {
+    .btn-primary {
       transition: background-color 0.3s;
     }
-    .btn-success:hover {
-      background-color: #146c43;
+    .btn-primary:hover {
+      background-color: #0056b3;
     }
     @keyframes slideIn {
       from { transform: translateY(-30px); opacity: 0; }
@@ -59,43 +59,33 @@
       margin-top: 1rem;
     }
     .footer-link a {
-      color: #198754;
+      color: #007bff;
       text-decoration: none;
       transition: color 0.3s;
     }
     .footer-link a:hover {
-      color: #146c43;
+      color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <div class="register-card">
-    <h3 class="form-title"><i class="fas fa-user-plus"></i> Registrar Usuario</h3>
+  <div class="login-card">
+    <h3 class="form-title"><i class="fas fa-user-lock"></i> Iniciar Sesión</h3>
 
     <?php
     session_start();
-    if (isset($_SESSION['registro_error'])) {
-        echo '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-1"></i> ' . $_SESSION['registro_error'] . '</div>';
-        unset($_SESSION['registro_error']);
-    } elseif (isset($_SESSION['registro_exito'])) {
-        echo '<div class="alert alert-success"><i class="fas fa-check-circle me-1"></i> ' . $_SESSION['registro_exito'] . '</div>';
-        unset($_SESSION['registro_exito']);
+    if (isset($_SESSION['error'])) {
+        echo '<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> ' . $_SESSION['error'] . '</div>';
+        unset($_SESSION['error']);
     }
     ?>
 
-    <form action="guardar_registro.php" method="POST">
+    <form action="validar_login.php" method="POST">
       <div class="mb-3">
-        <label for="usuario" class="form-label">Usuario</label>
+        <label for="usuario" class="form-label">Usuario o Email</label>
         <div class="input-group">
           <span class="input-group-text"><i class="fas fa-user"></i></span>
-          <input type="text" class="form-control" id="usuario" name="usuario" required>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Correo electrónico</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-          <input type="email" class="form-control" id="email" name="email" required>
+          <input type="text" class="form-control" id="usuario" name="usuario" required autofocus>
         </div>
       </div>
       <div class="mb-3">
@@ -105,24 +95,16 @@
           <input type="password" class="form-control" id="password" name="password" required>
         </div>
       </div>
-      <div class="mb-3">
-        <label for="confirmar_password" class="form-label">Confirmar Contraseña</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-lock"></i></span>
-          <input type="password" class="form-control" id="confirmar_password" name="confirmar_password" required>
-        </div>
-      </div>
       <div class="d-grid">
-        <button type="submit" class="btn btn-success">
-          <i class="fas fa-user-check me-1"></i> Registrarse
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-sign-in-alt"></i> Ingresar
         </button>
       </div>
     </form>
 
-    <!-- Enlace hacia login -->
-    <div class="footer-link mt-3">
-      <i class="fas fa-sign-in-alt text-success me-2"></i>
-      <a href="index.php">¿Ya tienes cuenta? <u>Inicia sesión aquí</u></a>
+    <div class="footer-link">
+      <i class="fas fa-user-plus"></i>
+      <a href="registro.php">¿No tienes cuenta? Regístrate</a>
     </div>
   </div>
 

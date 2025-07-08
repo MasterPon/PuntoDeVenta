@@ -116,9 +116,11 @@ if ($id_buscar !== '') {
         <?php endif; ?>
       </form>
     </div>
- <a href="principal.php" class="btn btn-secondary shadow-sm">
-    <i class="fas fa-arrow-left me-2"></i>Regresar a Principal
-  </a>
+
+    <a href="principal.php" class="btn btn-secondary shadow-sm mb-3">
+      <i class="fas fa-arrow-left me-2"></i>Regresar a Principal
+    </a>
+
     <div class="table-responsive shadow-sm rounded">
       <table class="table table-bordered table-hover align-middle mb-0">
         <thead>
@@ -164,21 +166,23 @@ if ($id_buscar !== '') {
                 </form>
               </td>
               <td class="text-center" style="width: 130px;">
-                <a href="producto_editar.php?id=<?= $row['id'] ?>" 
-                   class="btn btn-warning btn-sm me-3" 
-                   title="Editar producto" 
-                   data-bs-toggle="tooltip" 
-                   data-bs-placement="top">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <a href="producto_eliminar.php?id=<?= $row['id'] ?>" 
-                   class="btn btn-danger btn-sm" 
-                   onclick="return confirm('¿Eliminar este producto?')" 
-                   title="Eliminar producto" 
-                   data-bs-toggle="tooltip" 
-                   data-bs-placement="top">
-                  <i class="fas fa-trash"></i>
-                </a>
+                <div class="d-flex justify-content-center flex-wrap gap-2">
+                  <a href="producto_editar.php?id=<?= $row['id'] ?>" 
+                     class="btn btn-warning btn-sm" 
+                     title="Editar producto" 
+                     data-bs-toggle="tooltip" 
+                     data-bs-placement="top">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="producto_eliminar.php?id=<?= $row['id'] ?>" 
+                     class="btn btn-danger btn-sm" 
+                     onclick="return confirm('¿Eliminar este producto?')" 
+                     title="Eliminar producto" 
+                     data-bs-toggle="tooltip" 
+                     data-bs-placement="top">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </div>
               </td>
             </tr>
             <?php endwhile; ?>
@@ -190,13 +194,12 @@ if ($id_buscar !== '') {
         </tbody>
       </table>
     </div>
-
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   </script>
 </body>
 </html>
